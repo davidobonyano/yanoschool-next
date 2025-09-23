@@ -229,7 +229,7 @@ export async function GET() {
         .eq('status', 'approved');
       if (currentSessionId) approvalsQuery = approvalsQuery.eq('session_id', currentSessionId);
       if (currentTermId) approvalsQuery = approvalsQuery.eq('term_id', currentTermId);
-      let { data: approvedRowsRaw } = await approvalsQuery as unknown as { data: any[] | null };
+      const { data: approvedRowsRaw } = await approvalsQuery as unknown as { data: any[] | null };
 
       // Apply name-based filter when ids missing or columns are strings
       let approvedRows: any[] = Array.isArray(approvedRowsRaw) ? approvedRowsRaw : [];

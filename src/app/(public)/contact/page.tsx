@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 

@@ -471,7 +471,7 @@ export default function ResultsManagementPage() {
 
       let prefilledCount = 0;
       const nextScores: typeof scoresByCourseId = { ...scoresByCourseId };
-			rows.forEach((row, idx) => {
+			rows.forEach((row, _i) => {
         const cid = codeToCourse.get(row.courseCode.trim().toUpperCase());
         if (!cid) {
 					// ignore unknown course codes for prefill; could collect and show later
