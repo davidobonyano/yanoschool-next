@@ -1,0 +1,307 @@
+@import "tailwindcss";
+
+
+
+/* Base styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f9fafb; /* fallback light background */
+  color: #1f2937; /* default text color (gray-800) */
+}
+
+/* Dark Mode Styles via .dark-mode class */
+body.dark-mode {
+  background-color: #1F222A;
+  color: #D4D4D4;
+}
+
+/* Elements with light backgrounds that need to turn dark */
+body.dark-mode header,
+body.dark-mode nav,
+body.dark-mode footer,
+body.dark-mode .card,
+body.dark-mode .section,
+body.dark-mode .content,
+body.dark-mode .bg-white,
+body.dark-mode .bg-gray-200 {
+  background-color: #2D2D30 !important;
+  color: #D4D4D4 !important;
+  border: 1px solid #3a3a3d;
+}
+
+/* Text colors override */
+body.dark-mode .text-gray-700,
+body.dark-mode .text-gray-600,
+body.dark-mode .text-black {
+  color: #D4D4D4 !important;
+}
+
+/* Navigation Links Dark Mode */
+body.dark-mode nav a,
+body.dark-mode header a,
+body.dark-mode .nav-link,
+body.dark-mode a[href^="/"] {
+  color: #D4D4D4 !important; /* nav links use consistent color scheme */
+}
+
+/* Link hover color */
+body.dark-mode a:hover {
+  color: #90cdf4 !important; /* soft blue */
+}
+
+/* Override any blue nav links specifically */
+body.dark-mode nav a:not(:hover),
+body.dark-mode header a:not(:hover) {
+  color: #D4D4D4 !important; /* ensure nav links are consistent */
+}
+
+/* Shadow override */
+body.dark-mode .shadow-md {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Optional styling classes that may be reused */
+body.dark-mode .card,
+body.dark-mode .section {
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+/* Transparent overlays */
+body.dark-mode .transparent {
+  background-color: #2D2D30 !important;
+  backdrop-filter: blur(6px);
+  color: #D4D4D4 !important;
+}
+body.dark-mode .bg-gray-100 {
+  background-color: #2D2D30 !important; /* matches body dark background */
+}
+
+/* Uniform Section Colors */
+body.dark-mode .bg-red-50 {
+  background-color: #1F222A !important; /* matches body dark background */
+}
+
+body.dark-mode .bg-gray-50 {
+  background-color: #1F222A !important; /* Student Gallery background - matches body dark background */
+}
+
+body.dark-mode .text-red-600 {
+  color: #f87171 !important; /* red-400 for better dark mode contrast */
+}
+
+body.dark-mode .text-gray-900 {
+  color: #f3f4f6 !important; /* gray-100 */
+}
+
+body.dark-mode .text-gray-600 {
+  color: #d1d5db !important; /* gray-300 */
+}
+
+body.dark-mode .bg-neutral-800 {
+  background-color: #2D2D30 !important; /* neutral-800 */
+}
+
+body.dark-mode .bg-red-600 {
+  background-color: #ef4444 !important; /* red-500 for better dark mode visibility */
+}
+
+/* Dark mode shadows for uniform cards */
+body.dark-mode .shadow-neutral-800 {
+  box-shadow: 0 4px 6px -1px rgba(38, 38, 38, 0.2) !important;
+}
+
+/* Login Pages Dark Mode */
+body.dark-mode .from-blue-50 {
+  background: linear-gradient(to bottom right, #1F222A, #1F222A) !important;
+}
+
+body.dark-mode .from-green-50 {
+  background: linear-gradient(to bottom right, #1F222A, #1F222A) !important;
+}
+
+body.dark-mode .from-red-50 {
+  background: linear-gradient(to bottom right, #1F222A, #1F222A) !important;
+}
+
+body.dark-mode .text-gray-800 {
+  color: #f3f4f6 !important; /* gray-100 */
+}
+
+body.dark-mode .shadow-xl {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Login form inputs and labels */
+body.dark-mode .text-gray-700 {
+  color: #d1d5db !important; /* gray-300 */
+}
+
+body.dark-mode .border-gray-300 {
+  border-color: #4b5563 !important; /* gray-600 */
+  background-color: #374151 !important; /* gray-700 */
+  color: #f9fafb !important; /* gray-50 */
+}
+
+body.dark-mode .text-gray-400 {
+  color: #9ca3af !important; /* gray-400 - keep same for consistency */
+}
+
+/* Theme Toggle Dark Mode */
+body.dark-mode .bg-gray-100 {
+  background-color: #2D2D30 !important; /* gray-600 */
+}
+body.dark-mode .bg-card {
+  background-color: #2D2D30 !important; /* gray-600 */
+}
+
+body.dark-mode .bg-gray-700 {
+  background-color: #374151 !important; /* keep as is */
+}
+
+/* Student Gallery Dark Mode - bg-gray-50 now handled above */
+
+/* Gallery section backgrounds and text colors - more specific targeting */
+body.dark-mode section h2 {
+  color: #D4D4D4 !important; /* all section titles including gallery */
+}
+
+body.dark-mode section p {
+  color: #D4D4D4 !important; /* all section paragraphs including gallery description */
+}
+
+body.dark-mode .text-3xl,
+body.dark-mode .text-4xl {
+  color: #D4D4D4 !important; /* large titles */
+}
+
+/* Gallery filter buttons */
+body.dark-mode button:not(.bg-red-600) {
+  background-color: #2D2D30 !important; /* inactive buttons - matches your card color */
+  color: #D4D4D4 !important; /* inactive button text - matches your scheme */
+  border: 1px solid #3a3a3d; /* matches your border color */
+}
+
+body.dark-mode button:not(.bg-red-600):hover {
+  background-color: #3a3a3d !important; /* button hover - slightly lighter */
+  color: #D4D4D4 !important; /* button hover text - consistent */
+}
+
+/* Gallery cards */
+body.dark-mode .aspect-square {
+  background-color: #2D2D30 !important; /* matches your card background */
+}
+
+body.dark-mode .group-hover\:opacity-100 h3 {
+  color: #D4D4D4 !important; /* card title on hover - matches your scheme */
+}
+
+/* Gallery "No photos found" message */
+body.dark-mode .text-gray-500 {
+  color: #D4D4D4 !important; /* matches your main text color */
+}
+
+/* Modal styles */
+body.dark-mode .bg-black\/80 {
+  background-color: rgba(31, 34, 42, 0.9) !important; /* matches your dark background with transparency */
+}
+
+body.dark-mode .text-gray-300 {
+  color: #D4D4D4 !important; /* matches your scheme */
+}
+
+body.dark-mode .text-gray-400 {
+  color: #D4D4D4 !important; /* matches your scheme */
+}
+
+body.dark-mode .shadow-lg {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important; /* matches your existing shadow */
+}
+
+/* Leadership Team Dark Mode - Override Tailwind dark: classes */
+body.dark-mode .dark\:bg-gray-900 {
+  background-color: #1F222A !important; /* use your consistent dark bg */
+}
+
+body.dark-mode .dark\:text-white {
+  color: #f3f4f6 !important; /* gray-100 */
+}
+
+body.dark-mode .dark\:bg-gray-800 {
+  background-color: #2D2D30 !important; /* use your card background */
+}
+
+body.dark-mode .dark\:text-gray-400 {
+  color: #9ca3af !important; /* gray-400 */
+}
+
+/* Uniform Guidelines Dark Mode - Override Tailwind dark: classes */
+body.dark-mode .dark\:bg-neutral-900 {
+  background-color: #1F222A !important; /* main dark background */
+}
+
+body.dark-mode .dark\:text-gray-100 {
+  color: #f3f4f6 !important; /* gray-100 */
+}
+
+body.dark-mode .dark\:text-gray-300 {
+  color: #d1d5db !important; /* gray-300 */
+}
+
+body.dark-mode .dark\:bg-neutral-800 {
+  background-color: #2D2D30 !important; /* card background */
+}
+
+/* Dashboard Dark Mode Support for New Color Scheme */
+body.dark-mode .bg-blue-50 {
+  background-color: #2D2D30 !important; /* matches existing card background */
+}
+
+body.dark-mode .bg-blue-100 {
+  background-color: #3a3a3d !important; /* slightly lighter for hover states */
+}
+
+body.dark-mode .text-slate-700 {
+  color: #D4D4D4 !important; /* matches main text color */
+}
+
+body.dark-mode .text-slate-600 {
+  color: #D4D4D4 !important; /* matches main text color */
+}
+
+body.dark-mode .text-blue-200 {
+  color: #93c5fd !important; /* light blue for profile text */
+}
+
+/* Fix Select component styling */
+[data-radix-popper-content-wrapper] {
+  z-index: 50 !important;
+}
+
+[data-radix-select-content] {
+  background-color: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 6px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0,0, 0, 0.05) !important;
+}
+
+[data-radix-select-item] {
+  background-color: white !important;
+  color: #374151 !important;
+}
+
+[data-radix-select-item]:hover {
+  background-color: #f3f4f6 !important;
+}
+
+[data-radix-select-trigger] {
+  background-color: white !important;
+  border: 1px solid #d1d5db !important;
+}
