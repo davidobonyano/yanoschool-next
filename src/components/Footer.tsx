@@ -20,9 +20,9 @@ const Footer = () => {
     <Image
       src="/images/yano-logo.png"
       alt="Yano School Logo"
-      className="h-16 w-auto object-contain"
-      width={160}
-      height={64}
+      className="h-20 w-auto object-contain"
+      width={200}
+      height={80}
       priority
     />
   </Link>

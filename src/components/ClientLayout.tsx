@@ -159,7 +159,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         <header
           className={`text-sm py-2 px-4 flex justify-between items-center flex-wrap z-20 transition-all duration-300 ${
             isHomePage
-              ? 'absolute top-0 left-0 w-full text-gray-700 bg-transparent'
+              ? 'absolute top-0 left-0 w-full text-gray-900 bg-transparent'
               : 'bg-gray-100 text-gray-600'
           }`}
         >
