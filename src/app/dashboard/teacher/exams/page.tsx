@@ -36,7 +36,7 @@ export default function ExamManagementPage() {
         </div>
         
         <a
-          href="https://yano-exams-o6re.vercel.app/admin"
+          href="https://exam.yanoschools.com/admin"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"

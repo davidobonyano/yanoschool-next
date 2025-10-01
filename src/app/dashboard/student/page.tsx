@@ -615,7 +615,7 @@ export default function StudentDashboard() {
                   </div>
                   <div className="flex gap-3">
                     <motion.a
-                      href="https://yano-exams-o6re.vercel.app/"
+                      href="https://exam.yanoschools.com/"
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
@@ -641,7 +641,7 @@ export default function StudentDashboard() {
               <h2 className="text-2xl font-bold text-gray-800 mb-4">No Upcoming Exams</h2>
               <p className="text-gray-600 mb-6">You don&apos;t have any exams scheduled at the moment.</p>
               <motion.a
-                href="https://yano-exams-o6re.vercel.app/"
+                href="https://exam.yanoschools.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
