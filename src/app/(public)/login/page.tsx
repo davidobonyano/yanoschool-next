@@ -82,9 +82,6 @@ export default function StudentLogin() {
       >
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-gradient-to-r from-blue-900 to-red-400 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <span className="text-white text-2xl font-bold">YS</span>
-          </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Student Portal</h1>
           <p className="text-gray-600">Access your academic dashboard</p>
         </div>

@@ -53,9 +53,6 @@ export default function AdminLogin() {
       >
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <FontAwesomeIcon icon={faUserShield} className="text-white text-2xl" />
-          </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Admin Portal</h1>
           <p className="text-gray-600">Administrative Dashboard Access</p>
         </div>

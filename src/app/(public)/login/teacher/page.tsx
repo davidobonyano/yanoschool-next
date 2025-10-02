@@ -52,9 +52,6 @@ export default function TeacherLogin() {
       >
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <FontAwesomeIcon icon={faChalkboardTeacher} className="text-white text-2xl" />
-          </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Teacher Portal</h1>
           <p className="text-gray-600">Access your teaching dashboard</p>
         </div>
