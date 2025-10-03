@@ -7,12 +7,12 @@ import { ToastProvider } from '@/components/ui/notifications';
 export const metadata: Metadata = {
   title: 'Yano School',
   description: 'Official website for Yano School – Programs, Admissions, About, Contact, and more.',
-  keywords: 'Yano School, Nigeria, Education, Programs, Admissions, Contact, Events',
+  keywords: 'Yano School, Nigeria, Ikorodu, Lagos, Education, Programs, Admissions, Contact, Events',
   authors: [
     { name: 'David Obonyano', url: 'https://yanoschools.com' },
   ],
   metadataBase: new URL('https://yanoschools.com'),
-  alternates: { canonical: '/' },
+  alternates: { canonical: 'https://yanoschools.com/' },
   openGraph: {
     title: 'Yano School',
     description: 'Empowering students through quality education and innovation.',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: 'Yano School',
     images: [
       {
-        url: '/images/heroo.jpg',
+        url: 'https://yanoschools.com/images/heroo.jpg',
         width: 1200,
         height: 630,
         alt: 'Yano School Hero Image',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Yano School',
     description: 'Empowering students through quality education and innovation.',
-    images: ['/images/heroo.jpg'],
+    images: ['https://yanoschools.com/images/heroo.jpg'],
   },
   robots: {
     index: true,
@@ -60,13 +60,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'Organization',
+              '@type': 'EducationalOrganization',
               name: 'Yano School',
               url: 'https://yanoschools.com',
               logo: 'https://yanoschools.com/images/yano-logo.png',
               image: [
                 'https://yanoschools.com/images/heroo.jpg',
               ],
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Peace Estate, Ikorodu',
+                addressLocality: 'Ikorodu',
+                addressRegion: 'Lagos',
+                addressCountry: 'Nigeria',
+              },
             }),
           }}
         />
