@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome, faInfoCircle, faGraduationCap, faUserPlus, faEnvelope,
-  faPhone, faMapMarkerAlt, faBars, faTimes, faSun, faMoon, faArrowUp, faUser
+  faPhone, faMapMarkerAlt, faBars, faTimes, faArrowUp, faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 import Footer from '@/components/Footer';
@@ -14,7 +14,6 @@ import Image from 'next/image';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
   const [mobileAccountDropdownOpen, setMobileAccountDropdownOpen] = useState(false);
@@ -33,37 +32,33 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   ];
 
   useEffect(() => {
-    const storedMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(storedMode);
+
 
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (accountDropdownRef.current && event.target instanceof Node && 
-          !accountDropdownRef.current.contains(event.target)) {
+      if (accountDropdownRef.current && event.target instanceof Node &&
+        !accountDropdownRef.current.contains(event.target)) {
         setAccountDropdownOpen(false);
       }
-      if (mobileAccountDropdownRef.current && event.target instanceof Node && 
-          !mobileAccountDropdownRef.current.contains(event.target)) {
+      if (mobileAccountDropdownRef.current && event.target instanceof Node &&
+        !mobileAccountDropdownRef.current.contains(event.target)) {
         setMobileAccountDropdownOpen(false);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     document.addEventListener('mousedown', handleClickOutside);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-  useEffect(() => {
-    document.body.classList.toggle('dark-mode', darkMode);
-    localStorage.setItem('darkMode', darkMode.toString());
-  }, [darkMode]);
+
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
@@ -86,9 +81,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className={`fixed bottom-4 left-4 z-50 p-3 rounded-full shadow-md transition-colors duration-300 ${
-            darkMode ? 'bg-white text-black' : 'bg-blue-900 text-white'
-          } hover:scale-110`}
+          className={`fixed bottom-4 left-4 z-50 p-3 rounded-full shadow-md transition-colors duration-300 bg-blue-900 text-white hover:scale-110`}
           aria-label="Back to top"
         >
           <FontAwesomeIcon icon={faArrowUp} />
@@ -105,9 +98,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {/* Sidebar - Mobile */}
       <div
         ref={sidebarRef}
-        className={`fixed top-0 right-0 h-full w-[70%] bg-white dark-sidebar z-50 p-6 transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto max-h-screen ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 right-0 h-full w-[70%] bg-white dark-sidebar z-50 p-6 transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto max-h-screen ${menuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         <button
           onClick={() => setMenuOpen(false)}
@@ -121,47 +113,31 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
               key={path}
               href={path}
               onClick={() => setMenuOpen(false)}
-              className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors duration-200 ${
-                pathname === path
-                  ? 'bg-blue-100 text-blue-900 font-semibold'
-                  : 'hover:bg-blue-50'
-              }`}
+              className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors duration-200 ${pathname === path
+                ? 'bg-blue-100 text-blue-900 font-semibold'
+                : 'hover:bg-blue-50'
+                }`}
             >
               <FontAwesomeIcon icon={icon} />
               <span>{label}</span>
             </Link>
           ))}
 
-          
-             
+
+
         </nav>
 
-        <button
-          onClick={() => {
-            setDarkMode(!darkMode);
-            setMenuOpen(false);
-          }}
-          className={`mt-8 self-start transition-colors duration-300 w-10 h-10 flex items-center justify-center ${
-            darkMode
-              ? 'bg-white text-black border border-gray-400 rounded-full'
-              : 'bg-gray-200 text-blue-900 rounded-full border border-transparent'
-          }`}
-          aria-label="Toggle Dark Mode"
-        >
-          <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
-        </button>
+
       </div>
 
-      <div className={`transition-transform duration-500 ease-in-out ${
-        menuOpen ? "-translate-x-[70%] scale-[0.7] rounded-lg overflow-hidden" : ""
-      }`}>
+      <div className={`transition-transform duration-500 ease-in-out ${menuOpen ? "-translate-x-[70%] scale-[0.7] rounded-lg overflow-hidden" : ""
+        }`}>
         {/* Contact Header */}
         <header
-          className={`text-sm py-2 px-4 flex justify-between items-center flex-wrap z-20 transition-all duration-300 ${
-            isHomePage
-              ? 'absolute top-0 left-0 w-full text-gray-900 bg-transparent'
-              : 'bg-gray-100 text-gray-600'
-          }`}
+          className={`text-sm py-2 px-4 flex justify-between items-center flex-wrap z-20 transition-all duration-300 ${isHomePage
+            ? 'absolute top-0 left-0 w-full text-gray-900 bg-transparent'
+            : 'bg-gray-100 text-gray-600'
+            }`}
         >
           <div className="flex flex-wrap gap-4 items-center">
             <span className="flex items-center gap-2">
@@ -181,11 +157,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
         {/* Desktop Nav */}
         <nav
-          className={`z-30 hidden lg:flex items-center px-6 ${
-            isHomePage
-              ? 'absolute lg:top-13 left-1/2 transform -translate-x-1/2 w-[80%] bg-white text-blue-900 rounded-xl shadow-md justify-between'
-              : 'bg-lightmode-header shadow-md py-4 justify-between'
-          }`}
+          className={`z-30 hidden lg:flex items-center px-6 ${isHomePage
+            ? 'absolute lg:top-13 left-1/2 transform -translate-x-1/2 w-[80%] bg-white text-blue-900 rounded-xl shadow-md justify-between'
+            : 'bg-lightmode-header shadow-md py-4 justify-between'
+            }`}
         >
           <Link href="/">
             <Image
@@ -202,19 +177,17 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
               <Link
                 key={path}
                 href={path}
-                className={`relative group transition-all duration-200 pb-1 ${
-                  pathname === path
-                    ? 'text-blue-900 font-semibold'
-                    : isHomePage
+                className={`relative group transition-all duration-200 pb-1 ${pathname === path
+                  ? 'text-blue-900 font-semibold'
+                  : isHomePage
                     ? 'text-blue-900'
                     : 'text-gray-700'
-                } hover:text-blue-700`}
+                  } hover:text-blue-700`}
               >
                 {label}
                 <span
-                  className={`absolute left-0 -bottom-3 h-[2px] bg-blue-700 transition-all duration-300 ${
-                    pathname === path ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`}
+                  className={`absolute left-0 -bottom-3 h-[2px] bg-blue-700 transition-all duration-300 ${pathname === path ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
                 ></span>
               </Link>
             ))}
@@ -236,9 +209,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-t-md"
                     onClick={() => setAccountDropdownOpen(false)}
                   >
-                   Login
+                    Login
                   </Link>
-                 
+
                   <Link
                     href="/register"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-b-md border-t"
@@ -250,27 +223,16 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
               )}
             </div>
 
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`transition-colors duration-300 w-10 h-10 flex items-center justify-center ${
-                darkMode
-                  ? 'bg-white text-black border border-gray-400 rounded-full'
-                  : 'bg-gray-200 text-blue-900 rounded-full border border-transparent'
-              }`}
-              aria-label="Toggle Dark Mode"
-            >
-              <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
-            </button>
+
           </div>
         </nav>
 
         {/* Mobile Header */}
         <div
-          className={`flex lg:hidden justify-between items-center px-4 shadow-md transition-all duration-300 ${
-            isHomePage
-              ? 'absolute top-[80px] w-[80%] left-1/2 transform -translate-x-1/2 bg-white z-30 rounded-xl shadow-md'
-              : 'bg-lightmode-header'
-          }`}
+          className={`flex lg:hidden justify-between items-center px-4 shadow-md transition-all duration-300 ${isHomePage
+            ? 'absolute top-[80px] w-[80%] left-1/2 transform -translate-x-1/2 bg-white z-30 rounded-xl shadow-md'
+            : 'bg-lightmode-header'
+            }`}
         >
           <Link href="/">
             <Image
@@ -301,9 +263,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                       setMobileAccountDropdownOpen(false);
                     }}
                   >
-                   Login
+                    Login
                   </Link>
-                  
+
                   <Link
                     href="/register"
                     className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-b-md border-t"
@@ -318,9 +280,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle Menu"
-              className={`text-xl ${
-                isHomePage ? 'text-blue-900' : darkMode ? 'text-white' : 'text-gray-700'
-              }`}
+              className={`text-xl ${isHomePage ? 'text-blue-900' : 'text-gray-700'
+                }`}
             >
               <FontAwesomeIcon icon={faBars} />
             </button>

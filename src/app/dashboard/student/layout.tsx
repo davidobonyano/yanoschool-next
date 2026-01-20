@@ -9,7 +9,7 @@ import { AcademicContextProvider } from '@/lib/academic-context';
 import { GlobalAcademicSync } from '@/lib/global-academic-sync';
 import { GlobalAcademicContextProvider } from '@/contexts/GlobalAcademicContext';
 import { useDashboardRefresh } from '@/lib/use-dashboard-refresh';
-import ThemeToggle from '@/components/theme/ThemeToggle';
+
 import {
   faHome,
   faBook,
@@ -199,7 +199,6 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
         <GlobalAcademicSync />
         <div
           className="flex h-screen bg-gray-100 relative overflow-hidden"
-          suppressHydrationWarning
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -207,7 +206,7 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
 
 
           {/* Mobile Top Nav with Hamburger */}
-          <header suppressHydrationWarning className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white border-b z-40 flex items-center justify-between px-4">
+          <header className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white border-b z-40 flex items-center justify-between px-4">
             <button
               aria-label="Open menu"
               onClick={() => setSidebarOpen(true)}
@@ -220,7 +219,7 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
           </header>
 
           {/* Desktop Sidebar - Full width with colors */}
-          <aside suppressHydrationWarning className="hidden lg:flex lg:flex-col lg:w-80 bg-white shadow-xl border-r h-full overflow-hidden">
+          <aside className="hidden lg:flex lg:flex-col lg:w-80 bg-white shadow-xl border-r h-full overflow-hidden">
             {/* Profile Section */}
             <div className="p-6 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
               <div className="flex items-center gap-4">
@@ -272,10 +271,7 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
 
             {/* Theme Toggle & Logout Section */}
             <div className="p-4 border-t border-gray-200 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-600 font-medium">Theme</span>
-                <ThemeToggle />
-              </div>
+
               <button
                 onClick={handleLogout}
                 className="flex items-center gap-4 w-full p-4 text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300 group"
@@ -358,10 +354,7 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
 
                   {/* Theme Toggle & Logout Section */}
                   <div className="p-4 border-t border-gray-200 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600 font-medium">Theme</span>
-                      <ThemeToggle />
-                    </div>
+
                     <button
                       onClick={handleLogout}
                       className="flex items-center gap-3 w-full p-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
@@ -376,7 +369,7 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
           </AnimatePresence>
 
           {/* Main Content Area */}
-          <main suppressHydrationWarning className="flex-1 h-full overflow-y-auto bg-gray-50 lg:ml-0 pt-14 lg:pt-0">
+          <main className="flex-1 h-full overflow-y-auto bg-gray-50 lg:ml-0 pt-14 lg:pt-0">
             {children}
           </main>
         </div>

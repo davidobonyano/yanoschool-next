@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faEye, faEyeSlash, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -44,70 +45,86 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#F8F9FA] flex items-center justify-center p-4 relative overflow-hidden text-[#1A1A1A]">
+      {/* Decorative Blur Elements */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-slate-200/50 rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-100/30 rounded-full blur-[120px]" />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full max-w-md relative z-10"
       >
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Admin Portal</h1>
-          <p className="text-gray-600">Administrative Dashboard Access</p>
+        {/* Logo/Identity */}
+        <div className="flex flex-col items-center mb-10">
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 mb-6 group hover:shadow-md transition-shadow duration-300">
+            <Link href="/">
+              <Image
+                src="/images/yano-logo.png"
+                alt="Yano School Logo"
+                width={140}
+                height={56}
+                className="h-10 w-auto object-contain"
+                priority
+              />
+            </Link>
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Admin Gateway</h1>
+          <p className="text-slate-500 mt-2 font-medium">System Administration Access</p>
         </div>
 
-        {/* Login Form */}
+        {/* Login Form Card */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-white rounded-2xl shadow-xl p-8"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-10"
         >
           <form onSubmit={handleLogin} className="space-y-6">
             {/* Email Input */}
-            <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700 ml-1">
+                Admin Email
               </label>
-              <div className="relative">
-                <FontAwesomeIcon 
-                  icon={faEnvelope} 
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
-                />
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-slate-900 transition-colors">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </div>
                 <input
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder="admin@yanoschools.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                  className="w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 outline-none transition-all duration-200 font-medium placeholder:text-slate-300 placeholder:font-normal"
                   required
                 />
               </div>
             </div>
 
             {/* Password Input */}
-            <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <FontAwesomeIcon 
-                  icon={faLock} 
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
-                />
+            <div className="space-y-2">
+              <div className="flex justify-between items-center ml-1">
+                <label className="text-sm font-semibold text-slate-700">
+                  Secure Password
+                </label>
+              </div>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-slate-900 transition-colors">
+                  <FontAwesomeIcon icon={faLock} />
+                </div>
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
+                  placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                  className="w-full pl-11 pr-12 py-3.5 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 outline-none transition-all duration-200 font-medium placeholder:text-slate-300"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors"
                 >
                   <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                 </button>
@@ -115,69 +132,72 @@ export default function AdminLogin() {
             </div>
 
             {/* Login Button */}
-            <motion.button 
-              type="submit" 
+            <motion.button
+              type="submit"
               disabled={isLoading}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-lg font-semibold hover:from-red-600 hover:to-red-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              whileHover={{ y: -1 }}
+              whileTap={{ y: 0 }}
+              className="w-full bg-slate-900 text-white py-4 rounded-xl font-bold shadow-[0_10px_20px_rgba(15,23,42,0.15)] hover:bg-slate-800 hover:shadow-[0_15px_25px_rgba(15,23,42,0.2)] disabled:bg-slate-400 disabled:shadow-none transition-all duration-300 mt-2"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                  Signing in...
+                  <div className="w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin mr-3"></div>
+                  Authorizing...
                 </div>
               ) : (
-                'Sign In'
+                'Access Dashboard'
               )}
             </motion.button>
           </form>
-          
-          {/* Security Notice */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              Forgot your password? Contact the system administrator for assistance.
-            </p>
-          </div>
-          
-          {/* Alternative Login Options */}
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-center text-sm text-gray-600 mb-4">
-              Other portal access
-            </p>
-            <div className="grid grid-cols-2 gap-3">
+
+          {/* Alternative Portals */}
+          <div className="mt-10">
+            <div className="relative flex items-center mb-8">
+              <div className="flex-grow border-t border-slate-100"></div>
+              <span className="flex-shrink mx-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Gateway Switching</span>
+              <div className="flex-grow border-t border-slate-100"></div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
               <Link
                 href="/login"
-                className="text-center py-2 px-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100 hover:border-slate-300 transition-all duration-200"
               >
-                Student Login
+                Student
               </Link>
               <Link
                 href="/login/teacher"
-                className="text-center py-2 px-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100 hover:border-slate-300 transition-all duration-200"
               >
-                Teacher Login
+                Teacher
               </Link>
             </div>
           </div>
-          
-          {/* Message Display */}
-          {message && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`mt-4 p-3 rounded-lg text-center text-sm font-medium ${
-                message.includes('Welcome') 
-                  ? 'bg-green-50 text-green-700 border border-green-200' 
-                  : 'bg-red-50 text-red-700 border border-red-200'
-              }`}
-            >
-              {message}
-            </motion.div>
-          )}
+
+          {/* Status Message */}
+          <AnimatePresence>
+            {message && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                animate={{ opacity: 1, height: "auto", marginTop: 20 }}
+                exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                className={`overflow-hidden`}
+              >
+                <div className={`p-4 rounded-xl text-center text-sm font-bold border ${message.includes('Welcome')
+                  ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
+                  : 'bg-rose-50 text-rose-700 border-rose-100'
+                  }`}>
+                  {message}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
-        {/* Footer intentionally removed; global footer handles copyright */}
+        {/* Security Notice */}
+        <p className="text-center mt-8 text-sm font-medium text-slate-400 px-6">
+          This is a secure area. For authentication issues, contact the <span className="text-slate-900">System Administrator</span>.
+        </p>
       </motion.div>
     </div>
   );
